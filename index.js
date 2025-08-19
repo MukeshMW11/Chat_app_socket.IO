@@ -19,6 +19,12 @@ app.get("/", (req, res) => {
 
 io.on('connection',(socket)=>{
 console.log('Web Socket connected Successfully.')
+
+socket.on('message',(message)=>{
+console.log('The message from the user is',message)
+io.emit('chat message',message)
+
+})
 socket.on('disconnect',()=>{
     console.log('Sokcet Disconnected.')
 })
